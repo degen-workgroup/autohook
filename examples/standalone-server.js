@@ -71,7 +71,8 @@ const startServer = (port, auth) => http.createServer((req, res) => {
     const webhook = new Autohook(config);
     await webhook.removeWebhooks();
     await webhook.startFastifyServer();
-    await webhook.setNGrokWebhook();
+    // await webhook.setNGrokWebhook();
+    await webhook.setWebhook(process.env.TWITTER_WEBHOOK_SERVER_URL);
     await webhook.subscribe({
       oauth_token: config.token,
       oauth_token_secret: config.token_secret,
